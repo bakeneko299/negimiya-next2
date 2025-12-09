@@ -1,2 +1,32 @@
-/* src/app/globals.css */
-@import url('./css/style.css');   /* ← 旧CSSをそのまま読み込む */
+/* app/globals.css */
+
+body {
+  margin: 0;
+  font-family: sans-serif;
+}
+
+.header {
+  background: #fff;
+  border-bottom: 1px solid #ccc;
+}
+
+.header-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: #333;
+}
+
+.section {
+  padding: 80px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
