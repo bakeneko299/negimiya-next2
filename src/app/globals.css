@@ -1,4 +1,8 @@
 /* app/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 
 body {
   margin: 0;
@@ -30,3 +34,122 @@ body {
   max-width: 1200px;
   margin: 0 auto;
 }
+
+/* Links関連 */
+/* =========================
+   Links Section Base
+========================= */
+.links-section {
+  padding: 80px 20px;
+  background: var(--links-bg);
+}
+
+.links-container {
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.links-title {
+  font-size: 48px;
+  font-weight: 900;
+  color: var(--accent-alt);
+  margin-bottom: 16px;
+}
+
+.links-divider {
+  width: 100px;
+  border: 2px solid var(--accent-alt);
+  border-radius: 9999px;
+  margin: 0 auto 40px;
+}
+
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 24px;
+}
+
+/* =========================
+   Button Base
+========================= */
+.link-btn {
+  display: inline-block;
+  padding: 20px 56px;
+  font-size: 22px;
+  font-weight: bold;
+  text-decoration: none;
+  border-radius: 9999px;
+  transition: 0.3s ease;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+}
+
+.link-btn:hover {
+  transform: scale(1.1) translateY(-6px);
+}
+
+/* =========================
+   Button Colors（旧サイト再現）
+========================= */
+.link-youtube {
+  background: #FF0000;
+  color: #fff;
+}
+.link-youtube:hover {
+  background: #cc0000;
+}
+
+.link-x {
+  background: #000;
+  color: #fff;
+}
+.link-x:hover {
+  background: #222;
+}
+
+.link-marshmallow {
+  background: #FFE4E1;
+  color: #FF1493;
+}
+.link-marshmallow:hover {
+  background: #FFD5DC;
+}
+
+.link-skeb {
+  background: #1F8FFF;
+  color: #fff;
+}
+.link-skeb:hover {
+  background: #0F78DD;
+}
+
+.link-booth {
+  background: #F5F5F5;
+  color: #006400;
+}
+.link-booth:hover {
+  background: #e5e5e5;
+}
+
+/* =========================
+   背景色（テーマごとに変化）
+========================= */
+[data-theme="default"] { --links-bg: #AFEEEE; --accent-alt: #006666; }
+[data-theme="dark"]    { --links-bg: #2A4D4D; --accent-alt: #E0FFFF; }
+[data-theme="vivid"]   { --links-bg: #B0E0E6; --accent-alt: #008B8B; }
+[data-theme="pastel"]  { --links-bg: #FFE4E1; --accent-alt: #CD5C5C; }
+[data-theme="mono"]    { --links-bg: #D3D3D3; --accent-alt: #333333; }
+
+/* スマホでの調整（元のCSSのレスポンシブを再現） */
+@media (max-width: 640px) {
+  .links a {
+    padding: 12px 24px !important;
+    font-size: 16px !important;
+  }
+}
+

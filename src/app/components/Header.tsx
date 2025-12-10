@@ -10,7 +10,7 @@ export default function Header() {
             <a href="#hero">Top</a>
             <a href="#about">About</a>
             <a href="#activities">Activities</a>
-            <a href="#Links">Links</a>
+            <a href="#links">Links</a>
             </nav>
         </div>
         </header>
