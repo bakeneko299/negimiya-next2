@@ -3,7 +3,7 @@ import React from 'react';
 
 const LinksSection: React.FC = () => {
     return (
-        <section className="links fade-in" id="section5">
+        <section className="links fade-in" id="Links">
         <div className="container">
             <h2>Links</h2>
             <hr />
