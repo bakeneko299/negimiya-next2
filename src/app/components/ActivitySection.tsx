@@ -1,8 +1,71 @@
-// app/components/ActivitySection.tsx
+import React from 'react';
+
+/**
+ * ActivityItem コンポーネント
+ * 各動画/説明ブロックのレイアウトを担当します。
+ * PC (md:以上) では動画と説明が横並び (flex-row) になります。
+ */
+function ActivityItem({
+    title,
+    videoId,
+    description,
+}: {
+    title: string;
+    videoId: string;
+    description: React.ReactNode;
+}) {
+    return (
+        // ルート要素: mb-[60px] で間隔を確保。モバイルは縦積み、PCは横並び。
+        <div className="flex flex-col md:flex-row justify-around items-center mb-[60px] fade-in">
+            
+            {/* 1. タイトルと説明文のコラム (左側) */}
+            {/* PCサイズ (md:) 以上で幅を46%に設定 (元のCSS .videos .column w: 46% を再現) */}
+            <div className="w-full md:w-[46%] mb-6 md:mb-0">
+                
+                {/* h2: 元のCSS .videos h2 を再現 */}
+                <h2 className="scramble-text text-2xl md:text-[28px] font-bold text-[var(--accent-alt)] mb-4 md:mb-[18px] leading-[1.3]">
+                    {title}
+                </h2>
+                
+                {/* hr: 元のCSS .videos hr を再現 */}
+                <hr className="border-2 border-[var(--accent-color)] w-[60px] mb-5 md:mb-[20px]" />
+                
+                {/* p: 元のCSS .videos .text を再現 */}
+                <p className="text-[15px] md:text-[16px] leading-[1.8] text-[var(--text-color)] mb-5 md:mb-[20px]">
+                    {description}
+                </p>
+            </div>
+
+            {/* 2. 動画のコラム (右側) */}
+            {/* PCサイズ (md:) 以上で幅を46%に設定 */}
+            <div className="w-full md:w-[46%]">
+                <div className="aspect-video w-full">
+                    {/* 動画コンテナ: PCのCSSで設定されていた最大幅 600px を再現 */}
+                    <div className="w-full h-full md:max-w-[600px] md:mx-auto"> 
+                        <iframe
+                            className="w-full h-full rounded-xl shadow-lg"
+                            src={`https://www.youtube.com/embed/${videoId}`}
+                            title={title}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                            allowFullScreen
+                        ></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/**
+ * ActivitySection コンポーネント (セクション全体)
+ * 元のCSSの .videos セクションに対応します。
+ */
 export default function ActivitySection() {
     return (
-        <section id="activities" className="bg-[var(--section3-bg)] py-20">
+        // section: 元のCSS .videos を再現
+        <section id="videos" className="videos bg-[var(--section3-bg)] py-0 pb-10"> 
             <div className="container max-w-[1080px] w-[90%] mx-auto">
+
                 <ActivityItem
                     title="ハロウィン×グミ＝お祭り"
                     videoId="iY6u2zJ9X78"
@@ -36,7 +99,7 @@ export default function ActivitySection() {
                         </>
                     }
                 />
-
+                
                 <ActivityItem
                     title="食事を楽しみましょう"
                     videoId="z1HCukNoFFE"
@@ -48,7 +111,6 @@ export default function ActivitySection() {
                         </>
                     }
                 />
-
                 <ActivityItem
                     title="悲鳴はリスナーの栄養"
                     videoId="f2vSnWngjJY"
@@ -60,7 +122,6 @@ export default function ActivitySection() {
                         </>
                     }
                 />
-
                 <ActivityItem
                     title="心の葛藤"
                     videoId="CH7L6ZQgASc"
@@ -74,44 +135,5 @@ export default function ActivitySection() {
                 />
             </div>
         </section>
-    );
-}
-
-function ActivityItem({
-    title,
-    videoId,
-    description,
-}: {
-    title: string;
-    videoId: string;
-    description: React.ReactNode;
-}) {
-    return (
-        <div className="my-16 fade-in">
-            {/* タイトル */}
-            <h2 className="scramble-text text-[20px] md:text-2xl font-bold text-[var(--accent-alt)] mb-4">
-                {title}
-            </h2>
-
-            <hr className="border-2 border-[var(--accent-color)] w-12 mb-6" />
-
-            {/* 動画 */}
-            <div className="flex justify-center mb-6">
-                <div className="aspect-video w-full max-w-[600px]">
-                    <iframe
-                        className="w-full h-full rounded-xl shadow-lg"
-                        src={`https://www.youtube.com/embed/${videoId}`}
-                        title={title}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        allowFullScreen
-                    ></iframe>
-                </div>
-            </div>
-
-            {/* 説明文 */}
-            <p className="text-[15px] leading-[1.8] text-[var(--text-color)]">
-                {description}
-            </p>
-        </div>
     );
 }
