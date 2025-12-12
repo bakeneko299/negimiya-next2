@@ -35,9 +35,24 @@ body {
   margin: 0 auto;
 }
 
+/*フェードインアニメ*/
+.fade-in {
+  opacity: 0;
+  animation: fadeIn .8s ease-out forwards;
+}
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.scramble-text {
+  /* 既存のエフェクトCSSそのままでOK */
+}
+
+
 /* Links関連 */
 /* =========================
-   Links Section Base
+  Links Section Base
 ========================= */
 .links-section {
   padding: 80px 20px;
@@ -76,7 +91,7 @@ body {
 }
 
 /* =========================
-   Button Base
+  Button Base
 ========================= */
 .link-btn {
   display: inline-block;
@@ -94,7 +109,7 @@ body {
 }
 
 /* =========================
-   Button Colors（旧サイト再現）
+  Button Colors（旧サイト再現）
 ========================= */
 .link-youtube {
   background: #FF0000;
@@ -137,7 +152,7 @@ body {
 }
 
 /* =========================
-   背景色（テーマごとに変化）
+  背景色（テーマごとに変化）
 ========================= */
 [data-theme="default"] { --links-bg: #AFEEEE; --accent-alt: #006666; }
 [data-theme="dark"]    { --links-bg: #2A4D4D; --accent-alt: #E0FFFF; }
