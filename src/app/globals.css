@@ -168,3 +168,55 @@ body {
   }
 }
 
+
+/* --- 強制レイアウト修正用CSS --- */
+
+/* PCサイズ（640px以上）で強制的に横並びにする */
+@media (min-width: 640px) {
+  .video-layout-row {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 40px !important;
+  }
+  
+  .video-layout-col {
+    width: 48% !important;
+    margin-bottom: 0 !important;
+  }
+}
+
+/* スマホサイズ（639px以下）では縦並び */
+@media (max-width: 639px) {
+  .video-layout-row {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+  .video-layout-col {
+    width: 100% !important;
+    margin-bottom: 30px !important;
+  }
+}
+
+/* --- YouTube動画のアスペクト比固定 --- */
+.youtube-container {
+  position: relative;
+  width: 100%;
+  /* 16:9 の比率を確保 (9 / 16 = 0.5625) */
+  padding-top: 56.25%; 
+  background: #000;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.youtube-iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100% !important;
+  height: 100% !important;
+  border: none;
+}

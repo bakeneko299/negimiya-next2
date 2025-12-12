@@ -9,7 +9,7 @@ export default function Header() {
             <nav className="nav">
             <a href="#hero">Top</a>
             <a href="#about">About</a>
-            <a href="#activities">Activities</a>
+            <a href="#videos">Activities</a>
             <a href="#links">Links</a>
             </nav>
         </div>
