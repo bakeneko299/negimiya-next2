@@ -3,7 +3,7 @@
 import HeroSection from "./components/HeroSection";
 import AboutSection from "./components/AboutSection";
 import ActivitySection from "./components/ActivitySection";
-import ContactSection from "./components/LinksSection";
+import ShortsSection from "./components/ShortsSection";
 import LinksSection from "./components/LinksSection";
 
 export default function HomePage() {
@@ -11,6 +11,7 @@ export default function HomePage() {
     <>
       <HeroSection />
       <AboutSection />
+      <ShortsSection />
       <ActivitySection />
       <LinksSection />
     </>
