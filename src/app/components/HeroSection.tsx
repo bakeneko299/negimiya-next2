@@ -19,9 +19,6 @@ export default function HeroSection() {
 
             {/* コンテンツ（前回のやつそのまま） */}
             <div className="container relative z-10 text-center px-6">
-                <p className="hero__heading text-3xl md:text-5xl font-bold text-[#00CD66] mb-6">
-                葱野みやとは？
-                </p>
                 <h1 className="scramble-text text-5xl md:text-8xl font-black leading-tight text-[#00CED1] mb-8">
                 セルフ受肉系Vtuber個人勢(*'▽'*)<br />
                 好きなものは<br />
