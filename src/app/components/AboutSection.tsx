@@ -35,7 +35,7 @@ export default function ActivitiesSection() {
             image="/images/Image-2.jpeg"
             alt="イラストレーター"
             title="イラストレーター"
-            text="イラストレーターとしても活動しており、skebでのイラスト受注、Boothでのオリジナルグッズを販売しいます。"
+            text="イラストレーターとしても活動しており、skebでのイラスト受注、Boothでのオリジナルグッズを販売しています。"
             bgColor="rgba(224, 255, 255, 0.35)"
           />
           <ActivityCard
