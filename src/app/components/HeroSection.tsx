@@ -56,18 +56,20 @@ export default function HeroSection() {
         </div>
       </div>
 
-      {/* 中央カード（画像なし） */}
-      <div className="relative z-30 flex items-center justify-center w-full px-6">
-        <ActivityCard
-          image={null}
-          title="声の活動"
-          text="声が葱野みやの真骨頂といっても過言ではありません（諸説あり）。まずは下のショートから聞いてみましょう。"
-          bgColor="rgba(240, 248, 255, 0.28)"
-          cta={{ href: "https://www.youtube.com/@葱野みや", label: "YouTubeチャンネルへ" }}
-        />
+      {/* 中央カード：幅を制限して中央に配置 */}
+      <div className="relative z-30 w-full flex items-center justify-center px-6">
+        <div className="w-full max-w-xl sm:max-w-2xl"> 
+          <ActivityCard
+            image={null}
+            title="声の活動"
+            text="声が葱野みやの真骨頂といっても過言ではありません（諸説あり）。まずは下のショートから聞いてみましょう。"
+            bgColor="rgba(240, 248, 255, 0.28)"
+            cta={{ href: "https://www.youtube.com/@葱野みや", label: "YouTubeチャンネルへ" }}
+            /* ActivityCard は内部で w-full を使っているので、外側の max-w が効きます */
+          />
+        </div>
       </div>
 
-      {/* アニメーション定義 */}
       <style jsx global>{`
         @keyframes flow {
           from { transform: translateX(0); }
