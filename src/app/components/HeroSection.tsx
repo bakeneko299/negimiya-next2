@@ -16,57 +16,78 @@ export default function HeroSection() {
     setLowerImages(getRandomImages(10));
   }, []);
 
+  // ループ用に複製（継ぎ目安定）
+  const upperLoop = upperImages.concat(upperImages);
+  const lowerLoop = lowerImages.concat(lowerImages);
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen pt-16 overflow-hidden bg-gradient-to-b from-purple-900/30 to-pink-900/30 flex items-center justify-center"
+      // 背景は親レイアウトで管理するためセクション自体は透過にする
+      className="relative min-h-screen pt-16 overflow-hidden flex items-center justify-center bg-transparent"
     >
+      {/* 文字の可読性を保つための薄いオーバーレイ（必要に応じて opacity を調整） */}
+      <div className="absolute inset-0 pointer-events-none z-10">
+        <div className="absolute inset-0 bg-white/6" />
+        <div className="absolute inset-0 bg-black/8" />
+      </div>
+
       {/* 上部：左に流れる帯（ラッパーの高さを256pxに固定） */}
       <div
-        className="absolute top-16 left-0 w-full flex justify-start pointer-events-none z-10 overflow-hidden"
+        className="absolute top-16 left-0 w-full flex justify-start pointer-events-none z-20 overflow-hidden"
         style={{ height: 256 }}
       >
         <div
           className="flex"
-          style={{ width: "200%", animation: "flowLeft 80s linear infinite" }}
+          style={{
+            width: "200%",
+            animation: "flow 80s linear infinite",
+            willChange: "transform",
+            animationDelay: "0s",
+          }}
         >
-          {upperImages.concat(upperImages).map((num, index) => (
+          {upperLoop.map((num, index) => (
             <div key={`upper-${index}`} className="flex-shrink-0">
               <img
                 src={`/images/heroback/${num}.jpg`}
                 alt=""
                 className="h-[256px] object-contain block"
+                style={{ display: "block" }}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* 下部：右に流れる帯 */}
+      {/* 下部：右に流れる帯（同じキーフレームを逆再生） */}
       <div
-        className="absolute bottom-0 left-0 w-full flex justify-start pointer-events-none z-10 overflow-hidden"
+        className="absolute bottom-0 left-0 w-full flex justify-start pointer-events-none z-20 overflow-hidden"
         style={{ height: 256 }}
       >
         <div
           className="flex"
-          style={{ width: "200%", animation: "flowRight 80s linear infinite", animationDirection: "reverse" }}
+          style={{
+            width: "200%",
+            animation: "flow 80s linear infinite",
+            animationDirection: "reverse",
+            willChange: "transform",
+            animationDelay: "0s",
+          }}
         >
-          {lowerImages.concat(lowerImages).map((num, index) => (
+          {lowerLoop.map((num, index) => (
             <div key={`lower-${index}`} className="flex-shrink-0">
               <img
                 src={`/images/heroback/${num}.jpg`}
                 alt=""
                 className="h-[256px] object-contain block"
+                style={{ display: "block" }}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* 暗転フィルター */}
-      <div className="absolute inset-0 bg-black/40 pointer-events-none z-20" />
-
-      {/* メインコンテンツ（文字サイズを控えめに調整） */}
+      {/* メインコンテンツ（文字はそのまま） */}
       <div className="relative z-30 text-center px-6 max-w-4xl">
         <p className="text-base md:text-lg lg:text-xl font-semibold text-pink-300 mb-4 tracking-widest">
           葱野みやとは？
@@ -78,8 +99,8 @@ export default function HeroSection() {
           ネギとアニメとねこ！
         </h1>
 
-        <p className="text-base md:text-lg lg:text-lg text-gray-200 mb-12 max-w-2xl mx-auto leading-relaxed">
-          このサイトは葱野みやのファンが公認を頂いて作ったネタサイトです
+        <p className="text-base md:text-lg lg:text-lg text-gray-100/90 mb-12 max-w-2xl mx-auto leading-relaxed">
+          このサイトは葱野みやのファンが勝手に作ったネタサイトです♡
         </p>
 
         <a
@@ -92,15 +113,11 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* アニメーション定義（元のまま） */}
+      {/* アニメーション定義（共通キーフレーム flow を上下で逆再生） */}
       <style jsx global>{`
-        @keyframes flowLeft {
+        @keyframes flow {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
-        }
-        @keyframes flowRight {
-          from { transform: translateX(-50%); }
-          to   { transform: translateX(0); }
         }
       `}</style>
     </section>
