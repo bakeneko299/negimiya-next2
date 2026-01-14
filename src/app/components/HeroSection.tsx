@@ -9,7 +9,7 @@ export default function HeroSection() {
   useEffect(() => {
     const getRandomImages = (count: number) => {
       const allNumbers = Array.from({ length: 28 }, (_, i) => i + 1);
-      const shuffled = [...allNumbers].sort(() => 0.5 - Math.random());  // ← ここを修正！
+      const shuffled = [...allNumbers].sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count).map(n => String(n).padStart(3, "0"));
     };
     setUpperImages(getRandomImages(10));
@@ -21,52 +21,54 @@ export default function HeroSection() {
       id="hero"
       className="relative min-h-screen pt-16 overflow-hidden bg-gradient-to-b from-purple-900/30 to-pink-900/30 flex items-center justify-center"
     >
-      {/* 上部：左に流れる帯 */}
+      {/* 上部：左に流れる帯（ラッパーの高さを256pxに固定） */}
       <div
-        className="absolute top-16 left-0 w-[2000%] h-48 md:h-64 flex opacity-80 pointer-events-none z-10"
-        style={{ animation: "flowLeft 80s linear infinite" }}
+        className="absolute top-16 left-0 w-full flex justify-start pointer-events-none z-10 overflow-hidden"
+        style={{ height: 256 }}
       >
-        {upperImages.map((num, index) => (
-          <div
-            key={`upper-${index}`}
-            className="w-[10%] h-full bg-cover bg-center flex-shrink-0"
-            style={{ backgroundImage: `url("/images/heroback/${num}.jpg")` }}
-          />
-        ))}
-        {upperImages.slice(0, 2).map((num, index) => (
-          <div
-            key={`upper-loop-${index}`}
-            className="w-[10%] h-full bg-cover bg-center flex-shrink-0"
-            style={{ backgroundImage: `url("/images/heroback/${num}.jpg")` }}
-          />
-        ))}
+        <div
+          className="flex"
+          style={{ width: "200%", animation: "flowLeft 80s linear infinite" }}
+        >
+          {upperImages.concat(upperImages).map((num, index) => (
+            <div key={`upper-${index}`} className="flex-shrink-0">
+              <img
+                src={`/images/heroback/${num}.jpg`}
+                alt=""
+                className="h-[256px] object-contain"
+                // もし Tailwind の任意値が効かない場合は下記の style を使ってください
+                // style={{ height: 256, objectFit: 'contain', display: 'block' }}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* 下部：右に流れる帯 */}
       <div
-        className="absolute bottom-0 left-0 w-[2000%] h-48 md:h-64 flex opacity-80 pointer-events-none z-10"
-        style={{ animation: "flowRight 100s linear infinite" }}
+        className="absolute bottom-0 left-0 w-full flex justify-start pointer-events-none z-10 overflow-hidden"
+        style={{ height: 256 }}
       >
-        {lowerImages.map((num, index) => (
-          <div
-            key={`lower-${index}`}
-            className="w-[10%] h-full bg-cover bg-center flex-shrink-0"
-            style={{ backgroundImage: `url("/images/heroback/${num}.jpg")` }}
-          />
-        ))}
-        {lowerImages.slice(0, 2).map((num, index) => (
-          <div
-            key={`lower-loop-${index}`}
-            className="w-[10%] h-full bg-cover bg-center flex-shrink-0"
-            style={{ backgroundImage: `url("/images/heroback/${num}.jpg")` }}
-          />
-        ))}
+        <div
+          className="flex"
+          style={{ width: "200%", animation: "flowRight 80s linear infinite", animationDirection: "reverse" }}
+        >
+          {lowerImages.concat(lowerImages).map((num, index) => (
+            <div key={`lower-${index}`} className="flex-shrink-0">
+              <img
+                src={`/images/heroback/${num}.jpg`}
+                alt=""
+                className="h-[256px] object-contain"
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* 暗転フィルター */}
       <div className="absolute inset-0 bg-black/40 pointer-events-none z-20" />
 
-      {/* メインコンテンツ */}
+      {/* メインコンテンツ（文字はそのまま） */}
       <div className="relative z-30 text-center px-6 max-w-4xl">
         <p className="text-xl md:text-3xl font-bold text-pink-300 mb-4 tracking-widest">
           葱野みやとは？
@@ -89,7 +91,7 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* アニメーション定義 */}
+      {/* アニメーション定義（元のまま） */}
       <style jsx global>{`
         @keyframes flowLeft {
           from { transform: translateX(0); }
