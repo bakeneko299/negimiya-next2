@@ -16,6 +16,10 @@ export default function HeroSection() {
     setLowerImages(getRandomImages(10));
   }, []);
 
+  // ループ用に複製（継ぎ目安定）
+  const upperLoop = upperImages.concat(upperImages);
+  const lowerLoop = lowerImages.concat(lowerImages);
+
   return (
     <section
       id="hero"
@@ -28,37 +32,54 @@ export default function HeroSection() {
       >
         <div
           className="flex"
-          style={{ width: "200%", animation: "flowLeft 80s linear infinite" }}
+          // 共通キーフレーム flow を使う（下段は reverse）
+          style={{ width: "200%", animation: "flow 80s linear infinite", willChange: "transform" }}
         >
-          {upperImages.concat(upperImages).map((num, index) => (
-            <div key={`upper-${index}`} className="flex-shrink-0">
+          {upperLoop.map((num, index) => (
+            <div
+              key={`upper-${index}`}
+              className="flex-shrink-0"
+              // **ここで各アイテムの横幅を固定または最小幅にする**
+              // 例: width: 380px（お好みで調整）。minWidth にすると小画面で縮む。
+              style={{ width: 380, height: 256, display: "flex", alignItems: "center", justifyContent: "center" }}
+            >
               <img
                 src={`/images/heroback/${num}.jpg`}
                 alt=""
-                className="h-[256px] object-contain"
-                // もし Tailwind の任意値が効かない場合は下記の style を使ってください
-                // style={{ height: 256, objectFit: 'contain', display: 'block' }}
+                // 高さを256pxに固定、縦横比を維持して縮める
+                className="h-[256px] object-contain block"
+                // もし Tailwind の任意値が効かない環境なら下記 style を代わりに使ってください
+                // style={{ height: 256, objectFit: 'contain', display: 'block', maxWidth: '100%' }}
               />
             </div>
           ))}
         </div>
       </div>
 
-      {/* 下部：右に流れる帯 */}
+      {/* 下部：右に流れる帯（同じキーフレームを逆再生） */}
       <div
         className="absolute bottom-0 left-0 w-full flex justify-start pointer-events-none z-10 overflow-hidden"
         style={{ height: 256 }}
       >
         <div
           className="flex"
-          style={{ width: "200%", animation: "flowRight 80s linear infinite", animationDirection: "reverse" }}
+          style={{
+            width: "200%",
+            animation: "flow 80s linear infinite",
+            animationDirection: "reverse",
+            willChange: "transform",
+          }}
         >
-          {lowerImages.concat(lowerImages).map((num, index) => (
-            <div key={`lower-${index}`} className="flex-shrink-0">
+          {lowerLoop.map((num, index) => (
+            <div
+              key={`lower-${index}`}
+              className="flex-shrink-0"
+              style={{ width: 380, height: 256, display: "flex", alignItems: "center", justifyContent: "center" }}
+            >
               <img
                 src={`/images/heroback/${num}.jpg`}
                 alt=""
-                className="h-[256px] object-contain"
+                className="h-[256px] object-contain block"
               />
             </div>
           ))}
@@ -91,15 +112,11 @@ export default function HeroSection() {
         </a>
       </div>
 
-      {/* アニメーション定義（元のまま） */}
+      {/* アニメーション定義（共通キーフレーム flow） */}
       <style jsx global>{`
-        @keyframes flowLeft {
+        @keyframes flow {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
-        }
-        @keyframes flowRight {
-          from { transform: translateX(-50%); }
-          to   { transform: translateX(0); }
         }
       `}</style>
     </section>
