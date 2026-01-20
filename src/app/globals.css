@@ -1,5 +1,9 @@
 /* app/globals.css */
-@import "tailwindcss"; /*これじゃないとCSS適用されない*/
+@import "tailwindcss";
+
+/* =========================
+   Base
+========================= */
 body {
   margin: 0;
   font-family: sans-serif;
@@ -13,7 +17,6 @@ body {
   height: 64px;
   z-index: 50;
 }
-
 
 .header-inner {
   max-width: 1200px;
@@ -36,24 +39,55 @@ body {
   margin: 0 auto;
 }
 
-/*フェードインアニメ*/
+/* =========================
+   Fade-in Animation
+========================= */
 .fade-in {
   opacity: 0;
-  animation: fadeIn .8s ease-out forwards;
+  transform: translateY(10px);
+  animation: fadeIn 0.8s ease-out forwards;
 }
+
+.fade-in-slow {
+  opacity: 0;
+  transform: translateY(12px);
+  animation: fadeIn 1.2s ease-out forwards;
+}
+
+.fade-in-fast {
+  opacity: 0;
+  transform: translateY(6px);
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
 }
 
+/* =========================
+   Section Title (統一)
+========================= */
+.section-title {
+  @apply text-4xl md:text-5xl lg:text-6xl font-black tracking-wider text-center mb-12;
+  color: var(--accent-alt);
+}
+
+/* 下線も統一 */
+.section-divider {
+  @apply w-24 md:w-40 mx-auto border-4 rounded-full mt-6;
+  border-color: var(--accent-alt);
+}
+
+/* =========================
+   Scramble Text
+========================= */
 .scramble-text {
   /* 既存のエフェクトCSSそのままでOK */
 }
 
-
-/* Links関連 */
 /* =========================
-  Links Section Base
+   Links Section
 ========================= */
 .links-section {
   padding: 80px 20px;
@@ -84,7 +118,6 @@ body {
   list-style: none;
   padding: 0;
   margin: 0;
-
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -92,7 +125,7 @@ body {
 }
 
 /* =========================
-  Button Base
+   Button Base
 ========================= */
 .link-btn {
   display: inline-block;
@@ -110,50 +143,25 @@ body {
 }
 
 /* =========================
-  Button Colors（旧サイト再現）
+   Button Colors
 ========================= */
-.link-youtube {
-  background: #FF0000;
-  color: #fff;
-}
-.link-youtube:hover {
-  background: #cc0000;
-}
+.link-youtube { background: #FF0000; color: #fff; }
+.link-youtube:hover { background: #cc0000; }
 
-.link-x {
-  background: #000;
-  color: #fff;
-}
-.link-x:hover {
-  background: #222;
-}
+.link-x { background: #000; color: #fff; }
+.link-x:hover { background: #222; }
 
-.link-marshmallow {
-  background: #FFE4E1;
-  color: #FF1493;
-}
-.link-marshmallow:hover {
-  background: #FFD5DC;
-}
+.link-marshmallow { background: #FFE4E1; color: #FF1493; }
+.link-marshmallow:hover { background: #FFD5DC; }
 
-.link-skeb {
-  background: #1F8FFF;
-  color: #fff;
-}
-.link-skeb:hover {
-  background: #0F78DD;
-}
+.link-skeb { background: #1F8FFF; color: #fff; }
+.link-skeb:hover { background: #0F78DD; }
 
-.link-booth {
-  background: #F5F5F5;
-  color: #006400;
-}
-.link-booth:hover {
-  background: #e5e5e5;
-}
+.link-booth { background: #F5F5F5; color: #006400; }
+.link-booth:hover { background: #e5e5e5; }
 
 /* =========================
-  背景色（テーマごとに変化）
+   Theme Colors
 ========================= */
 [data-theme="default"] { --links-bg: #AFEEEE; --accent-alt: #006666; }
 [data-theme="dark"]    { --links-bg: #2A4D4D; --accent-alt: #E0FFFF; }
@@ -161,7 +169,9 @@ body {
 [data-theme="pastel"]  { --links-bg: #FFE4E1; --accent-alt: #CD5C5C; }
 [data-theme="mono"]    { --links-bg: #D3D3D3; --accent-alt: #333333; }
 
-/* スマホでの調整（元のCSSのレスポンシブを再現） */
+/* =========================
+   Responsive Fix
+========================= */
 @media (max-width: 640px) {
   .links a {
     padding: 12px 24px !important;
@@ -169,10 +179,9 @@ body {
   }
 }
 
-
-/* --- 強制レイアウト修正用CSS --- */
-
-/* PCサイズ（640px以上）で強制的に横並びにする */
+/* =========================
+   Video Layout Fix
+========================= */
 @media (min-width: 640px) {
   .video-layout-row {
     display: flex !important;
@@ -181,32 +190,30 @@ body {
     justify-content: space-between !important;
     gap: 40px !important;
   }
-  
   .video-layout-col {
     width: 48% !important;
     margin-bottom: 0 !important;
   }
 }
 
-/* スマホサイズ（639px以下）では縦並び */
 @media (max-width: 639px) {
   .video-layout-row {
     display: flex !important;
     flex-direction: column !important;
   }
-  
   .video-layout-col {
     width: 100% !important;
     margin-bottom: 30px !important;
   }
 }
 
-/* --- YouTube動画のアスペクト比固定 --- */
+/* =========================
+   YouTube Aspect Ratio
+========================= */
 .youtube-container {
   position: relative;
   width: 100%;
-  /* 16:9 の比率を確保 (9 / 16 = 0.5625) */
-  padding-top: 56.25%; 
+  padding-top: 56.25%;
   background: #000;
   border-radius: 12px;
   overflow: hidden;

@@ -1,23 +1,18 @@
 // app/components/ActivitySection.tsx
 export default function ActivitySection() {
   return (
-    <section id="videos" className="videos bg-[var(--section3-bg)] py-16 md:py-20">
+    <section id="videos" className="videos bg-[var(--section3-bg)] py-16 md:py-20 fade-in">
       <div className="container max-w-[1080px] w-[90%] mx-auto">
 
-        {/* ← セクション全体のタイトル（ここだけ追加！） */}
+        {/* ▼ 統一デザインのタイトル */}
         <div className="text-center mb-12 md:mb-16">
-          <h1 
-            className="scramble-text text-4xl md:text-5xl lg:text-6xl font-black tracking-wide"
-            style={{ color: "var(--accent-color)" }}
-          >
+          <h1 className="section-title scramble-text fade-in">
             Activities
           </h1>
-          <hr 
-            className="w-20 md:w-32 mx-auto border-4 border-[var(--accent-alt)] mt-6 rounded-full"
-          />
+          <hr className="section-divider fade-in" />
         </div>
 
-        {/* 既存のActivityItemたち（変更なし） */}
+        {/* ▼ 既存の ActivityItem（変更なし） */}
         <ActivityItem
           title="ハロウィン×グミ＝お祭り"
           videoId="iY6u2zJ9X78"
@@ -39,6 +34,7 @@ export default function ActivitySection() {
             </>
           }
         />
+
         <ActivityItem
           title="アルピニストとしてのプライド"
           videoId="FJ-lsDIjono"
@@ -50,6 +46,7 @@ export default function ActivitySection() {
             </>
           }
         />
+
         <ActivityItem
           title="食事を楽しみましょう"
           videoId="z1HCukNoFFE"
@@ -61,6 +58,7 @@ export default function ActivitySection() {
             </>
           }
         />
+
         <ActivityItem
           title="悲鳴はリスナーの栄養"
           videoId="f2vSnWngjJY"
@@ -72,6 +70,7 @@ export default function ActivitySection() {
             </>
           }
         />
+
         <ActivityItem
           title="心の葛藤"
           videoId="CH7L6ZQgASc"
@@ -83,11 +82,11 @@ export default function ActivitySection() {
             </>
           }
         />
+
       </div>
     </section>
   );
 }
-
 // ActivityItem は変更なし（そのまま残してください）
 function ActivityItem({
   title,
