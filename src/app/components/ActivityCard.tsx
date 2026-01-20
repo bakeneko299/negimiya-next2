@@ -9,7 +9,7 @@ type Props = {
   image?: string | null;
   alt?: string;
   title: string;
-  text: string;
+  text: string | string[]; // ← 配列対応
   bgColor?: string;
   compact?: boolean;
   cta?: CTA;
@@ -67,11 +67,19 @@ export default function ActivityCard({
           {title}
         </h2>
 
+        {/* ★ text が配列なら改行して表示 */}
         <p
-          className="text-sm md:text-base leading-relaxed mb-4 px-2"
+          className="text-sm md:text-base leading-relaxed mb-4 px-2 whitespace-pre-line"
           style={{ color: "var(--text-color, #111827)" }}
         >
-          {text}
+          {Array.isArray(text)
+            ? text.map((line, i) => (
+                <span key={i}>
+                  {line}
+                  {i < text.length - 1 && <br />}
+                </span>
+              ))
+            : text}
         </p>
 
         {cta ? (

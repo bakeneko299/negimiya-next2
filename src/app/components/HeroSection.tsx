@@ -61,11 +61,13 @@ export default function HeroSection() {
         <div className="w-full max-w-xl sm:max-w-2xl"> 
           <ActivityCard
             image={null}
-            title="声の活動"
-            text="声が葱野みやの真骨頂といっても過言ではありません（諸説あり）。まずは下のショートから聞いてみましょう。"
+            title="葱野みやとは？"
+            text={[
+              "セルフ受肉系Vtuber個人勢(*'▽'*)",
+              "好きなものは ネギとアニメとねこ！"
+            ]}
             bgColor="rgba(240, 248, 255, 0.28)"
             cta={{ href: "https://www.youtube.com/@葱野みや", label: "YouTubeチャンネルへ" }}
-            /* ActivityCard は内部で w-full を使っているので、外側の max-w が効きます */
           />
         </div>
       </div>
