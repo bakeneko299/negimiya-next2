@@ -4,7 +4,7 @@ export default function Header() {
     return (
         <header className="header">
         <div className="header-inner">
-            <div className="logo">NEGIMIYA</div>
+            <div className="logo">葱野みやファンサイト</div>
 
             <nav className="nav">
             <a href="#hero">Top</a>
