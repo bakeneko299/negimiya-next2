@@ -228,3 +228,10 @@ body {
   height: 100% !important;
   border: none;
 }
+
+/* Footer Colors */
+[data-theme="default"] { --footer-bg: #f0f8ff; --footer-text: #003333; }
+[data-theme="dark"]    { --footer-bg: #1a2b2b; --footer-text: #e0ffff; }
+[data-theme="vivid"]   { --footer-bg: #e0f7ff; --footer-text: #004f4f; }
+[data-theme="pastel"]  { --footer-bg: #ffeef0; --footer-text: #663333; }
+[data-theme="mono"]    { --footer-bg: #e5e5e5; --footer-text: #333333; }
