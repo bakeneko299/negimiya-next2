@@ -1,4 +1,7 @@
+// app/components/ShortsSection.tsx
 "use client";
+
+import { useEffect, useState } from "react";
 
 export default function ShortsSection() {
   const shortIds = [
@@ -19,8 +22,24 @@ export default function ShortsSection() {
     "",
   ];
 
-  const displayedShorts = shortIds.slice(0, 4);
-  const hasMore = shortIds.length > 4;
+  const [displayedShorts, setDisplayedShorts] = useState<string[]>([]);
+
+  useEffect(() => {
+    // 空IDを除外
+    const validIds = shortIds.filter((id) => id);
+
+    // シャッフル（Fisher–Yates）
+    const shuffled = [...validIds];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+
+    // 表示数を制限
+    setDisplayedShorts(shuffled.slice(0, 4));
+  }, []);
+
+  const hasMore = shortIds.filter((id) => id).length > 4;
 
   return (
     <section
@@ -29,8 +48,6 @@ export default function ShortsSection() {
       style={{ backgroundColor: "var(--section5-bg)" }}
     >
       <div className="container max-w-6xl mx-auto px-6">
-
-        {/* ▼ 統一デザインのタイトル */}
         <h2 className="section-title fade-in">Shorts</h2>
         <hr className="section-divider fade-in" />
 
@@ -64,12 +81,6 @@ export default function ShortsSection() {
                 backgroundColor: "var(--youtube-bg)",
                 color: "var(--footer-text)",
               }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.backgroundColor = "var(--youtube-hover)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.backgroundColor = "var(--youtube-bg)")
-              }
             >
               and more...
             </a>

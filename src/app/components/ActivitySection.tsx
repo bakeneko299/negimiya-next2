@@ -14,6 +14,27 @@ export default function ActivitySection() {
 
         {/* ▼ 既存の ActivityItem（変更なし） */}
         <ActivityItem
+          title="次は宇宙で！スイカゲームぷらねっとプレイ"
+          videoId="Zl4i0siXdAs"
+          description={
+            <>
+              満を持してスイカゲームぷらねっとをプレイ！<br />
+              「箱じゃないならダブルスイカは余裕！」とイキる葱野だが・・・？<br />
+            </>
+          }
+        />
+        <ActivityItem
+          title="新たな挑戦！Cairn登山実況"
+          videoId="6hpWLeiTAi0"
+          description={
+            <>
+              PEAKよりも現実的。話題の登山ゲーム「Cairn（ケルン）」をプレイ！<br />
+              マウント・カミの頂を目指す彼らの生き様に葱野みやは何を感じるか。<br />
+            </>
+          }
+        />
+
+        <ActivityItem
           title="ハロウィン×グミ＝お祭り"
           videoId="iY6u2zJ9X78"
           description={
