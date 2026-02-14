@@ -251,8 +251,11 @@ body {
   height: 128px;
   pointer-events: none;
   z-index: 9999;
+  opacity: 1;
+  transform: translate(0, 0);
   transition: transform 0.6s ease-out, opacity 0.6s ease-out;
 }
+
 
 /* Footer Colors */
 [data-theme="default"] { --footer-bg: #f0f8ff; --footer-text: #003333; }
