@@ -2,18 +2,26 @@
 import "./globals.css";
 import Header from "./components/Header";
 import Footer from "./components/footer";
+import ScatterEffect from "./components/ScatterEffect";
 
 export const metadata = {
   title: "Negimiya",
   description: "サイト説明…あとで調整できます",
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <html lang="ja" data-theme="default">
       <body>
+        {/* ページ全体クリック演出（DOMは描画しない） */}
+        <ScatterEffect />
+
         <div className="min-h-screen relative">
-          {/* 明るめの青ネギ系ライトグリーンから早めに白へフェード */}
+          {/* 背景グラデーション */}
           <div
             aria-hidden
             className="absolute inset-0 pointer-events-none"
@@ -24,8 +32,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
 
-          {/* 薄いノイズ（任意） */}
+          {/* 薄いノイズ */}
           <div
+            aria-hidden
             className="absolute inset-0 pointer-events-none"
             style={{
               zIndex: 1,
@@ -35,11 +44,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             }}
           />
 
-          {/* 軽いオーバーレイで文字のコントラストを安定 */}
-          <div className="absolute inset-0 bg-black/6 pointer-events-none" style={{ zIndex: 2 }} />
+          {/* 文字コントラスト安定用オーバーレイ */}
+          <div
+            aria-hidden
+            className="absolute inset-0 bg-black/6 pointer-events-none"
+            style={{ zIndex: 2 }}
+          />
 
-          {/* コンテンツ（Header / main / Footer） */}
-          <div style={{ position: "relative", zIndex: 10 }}>
+          {/* コンテンツ本体 */}
+          <div className="relative" style={{ zIndex: 10 }}>
             <Header />
             <main>{children}</main>
             <Footer />
