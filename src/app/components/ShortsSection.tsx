@@ -2,13 +2,21 @@
 
 export default function ShortsSection() {
   const shortIds = [
-    "5iyzl6kFgM8",
-    "jAXuN3AdWlM",
-    "OHso3KipCK0",
-    "Wzw1H6-vLaQ",
-    "78IOGfNEeDpTi2Lv",
+    "_7IpauUNmio",
     "Hrnann3SWgk",
+    "4qgdIbN4vWk",
+    "Wzw1H6-vLaQ",
+    "OHso3KipCK0",
+    "kOoJhl-tGXc",
+    "jAXuN3AdWlM",
+    "OgqmzCCmOtM",
+    "5iyzl6kFgM8",
+    "uw52egyGDuk",
+    "HEnTPFyVQGY",
     "X9PaIPHGDs8",
+    "o4H-_V6GYqI",
+    "",
+    "",
   ];
 
   const displayedShorts = shortIds.slice(0, 4);
