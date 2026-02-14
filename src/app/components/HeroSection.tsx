@@ -1,5 +1,6 @@
 // app/components/HeroSection.tsx
 "use client";
+
 import { useState, useEffect } from "react";
 import ActivityCard from "./ActivityCard";
 
@@ -13,6 +14,7 @@ export default function HeroSection() {
       const shuffled = [...allNumbers].sort(() => 0.5 - Math.random());
       return shuffled.slice(0, count).map(n => String(n).padStart(3, "0"));
     };
+
     setUpperImages(getRandomImages(10));
     setLowerImages(getRandomImages(10));
   }, []);
@@ -30,10 +32,14 @@ export default function HeroSection() {
         className="absolute top-16 left-0 w-full flex justify-start pointer-events-none z-20 overflow-hidden"
         style={{ height: 256 }}
       >
-        <div className="flex" style={{ width: "200%", animation: "flow 80s linear infinite", willChange: "transform" }}>
+        <div className="flex flow-track" style={{ width: "200%" }}>
           {upperLoop.map((num, index) => (
             <div key={`upper-${index}`} className="flex-shrink-0">
-              <img src={`/images/heroback/${num}.jpg`} alt="" className="h-[256px] object-contain block" />
+              <img
+                src={`/images/heroback/${num}.jpg`}
+                alt=""
+                className="h-[256px] object-contain block"
+              />
             </div>
           ))}
         </div>
@@ -45,20 +51,24 @@ export default function HeroSection() {
         style={{ height: 256 }}
       >
         <div
-          className="flex"
-          style={{ width: "200%", animation: "flow 80s linear infinite", animationDirection: "reverse", willChange: "transform" }}
+          className="flex flow-track"
+          style={{ width: "200%", animationDirection: "reverse" }}
         >
           {lowerLoop.map((num, index) => (
             <div key={`lower-${index}`} className="flex-shrink-0">
-              <img src={`/images/heroback/${num}.jpg`} alt="" className="h-[256px] object-contain block" />
+              <img
+                src={`/images/heroback/${num}.jpg`}
+                alt=""
+                className="h-[256px] object-contain block"
+              />
             </div>
           ))}
         </div>
       </div>
 
-      {/* 中央カード：幅を制限して中央に配置 */}
+      {/* 中央カード */}
       <div className="relative z-30 w-full flex items-center justify-center px-6">
-        <div className="w-full max-w-xl sm:max-w-2xl"> 
+        <div className="w-full max-w-xl sm:max-w-2xl">
           <ActivityCard
             image={null}
             title="葱野みやとは？"
@@ -67,15 +77,35 @@ export default function HeroSection() {
               "好きなものは ネギとアニメとねこ！"
             ]}
             bgColor="rgba(240, 248, 255, 0.28)"
-            cta={{ href: "https://www.youtube.com/@葱野みや", label: "YouTubeチャンネルへ" }}
+            cta={{
+              href: "https://www.youtube.com/@葱野みや",
+              label: "YouTubeチャンネルへ"
+            }}
           />
         </div>
       </div>
 
+      {/* グローバルアニメーション定義 */}
       <style jsx global>{`
         @keyframes flow {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
+          from {
+            transform: translateX(0);
+          }
+          to {
+            transform: translateX(-50%);
+          }
+        }
+
+        .flow-track {
+          animation: flow 80s linear infinite;
+          will-change: transform;
+        }
+
+        /* スマホだけ速くする */
+        @media (max-width: 640px) {
+          .flow-track {
+            animation-duration: 40s;
+          }
         }
       `}</style>
     </section>
