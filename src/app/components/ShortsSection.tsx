@@ -7,6 +7,8 @@ export default function ShortsSection() {
     "OHso3KipCK0",
     "Wzw1H6-vLaQ",
     "78IOGfNEeDpTi2Lv",
+    "Hrnann3SWgk",
+    "X9PaIPHGDs8",
   ];
 
   const displayedShorts = shortIds.slice(0, 4);
